@@ -1,0 +1,7 @@
+; $Id$
+name = Webform Rules
+core = 6.x
+description = "Adds rules integration for webform submissions."
+package = Webform
+dependencies[] = webform
+dependencies[] = rules

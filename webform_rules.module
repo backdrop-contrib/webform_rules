@@ -1,0 +1,30 @@
+<?php
+// $Id$
+
+/**
+ * @file
+ * Adds rules integration for webform submissions.
+ */
+
+/**
+ * Implementation of hook_form_alter().
+ */
+function webform_rules_form_alter(&$form, $form_state, $form_id) {
+  if (strpos($form_id, 'webform_client_form_') !== FALSE) {
+    // Add custom submit handler to webform form.
+    $form['#submit'][] = 'webform_rules_client_form_submit';
+  }
+}
+
+/**
+ * Custom submit handler for webform submissions.
+ */
+function webform_rules_client_form_submit($form, &$form_state) {
+  global $user;
+  // Get webform node.
+  $node = isset($form['#node']) ? $form['#node'] : new stdClass();
+  // Get submitted data from webform.
+  $data = isset($form['#post']['submitted']) ? $form['#post']['submitted'] : array();
+  // Invoke the rules event.
+  rules_invoke_event('webform_rules_submit', $user, $node, $data);
+}
