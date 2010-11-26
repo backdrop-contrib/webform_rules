@@ -1,7 +1,9 @@
 ; $Id$
 name = Webform Rules
-core = 6.x
+core = 7.x
 description = "Adds rules integration for webform submissions."
 package = Webform
+files[] = webform_rules.module
+files[] = webform_rules.rules.inc
 dependencies[] = webform
 dependencies[] = rules
