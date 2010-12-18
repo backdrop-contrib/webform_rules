@@ -16,11 +16,27 @@ function webform_rules_rules_event_info() {
       'label' => t('After a webform has been saved as draft'),
       'group' => t('Webform'),
       'variables' => _webform_rules_event_variables(),
+      'access callback' => 'rules_node_integration_access',
     ),
     'webform_rules_submit' => array(
       'label' => t('After a webform has been submitted'),
       'group' => t('Webform'),
       'variables' => _webform_rules_event_variables(),
+      'access callback' => 'rules_node_integration_access',
+    ),
+  );
+}
+
+/**
+ * Implements hook_rules_data_info().
+ */
+function webform_rules_data_info() {
+  return array(
+    'webform_data' => array(
+      'label' => t('webform data'),
+      'group' => t('Webform'),
+      'token type' => 'webform',
+      'property info' => array(),
     ),
   );
 }
@@ -42,8 +58,13 @@ function _webform_rules_event_variables() {
       'label' => t('The webform node'),
     ),
     'data' => array(
-      'type' => 'data',
+      'type' => 'webform',
       'label' => t('The submitted webform data'),
+    ),
+    'form_id' => array(
+      'type' => 'string',
+      'label' => t('The form id of the submitted form'),
+      'hidden' => TRUE,
     ),
   );
 }
