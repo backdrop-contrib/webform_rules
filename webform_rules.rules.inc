@@ -28,6 +28,33 @@ function webform_rules_rules_event_info() {
 }
 
 /**
+ * Implementation of hook_condition_info().
+ */
+function webform_rules_rules_condition_info() {
+  return array(
+    'webform_has_id' => array(
+      'label' => t('Webform has name'),
+      'parameter' => array(
+        'form_id' => array(
+          'type' => 'string',
+          'label' => t('The form id of the submitted form'),
+        ),
+        'selected_webform' => array(
+          'type' => 'list<text>',
+          'label' => t('Webforms'),
+          'options list' => 'webform_rules_get_webforms',
+          'description' => t('The name of the webform to check for.'),
+          'restriction' => 'input',
+        ),
+      ),
+      'help' => t('This condition just compares two texts. It returns TRUE, if both texts are equal.'),
+      'group' => t('Webform'),
+      'base' => 'webform_rules_condition_webform_has_id',
+    ),
+  );
+}
+
+/**
  * Implements hook_rules_data_info().
  */
 function webform_rules_data_info() {
@@ -39,6 +66,34 @@ function webform_rules_data_info() {
       'property info' => array(),
     ),
   );
+}
+
+/**
+ * Function to compare the form id of the submitted webform with the selected
+ * form.
+ */
+function webform_rules_condition_webform_has_id($form_id, $selected_webform) {
+  if (is_array($selected_webform)) {
+    return in_array($form_id, $selected_webform);
+  }
+  elseif (is_string($selected_webform)) {
+    return $form_id == $selected_webform;
+  }
+  return FALSE;
+}
+
+/**
+ * Get an option list of all webforms.
+ */
+function webform_rules_get_webforms() {
+  $result = db_query("SELECT nid, title FROM node WHERE type = :type", array(
+    ':type' => 'webform',
+  ));
+  $options = array();
+  foreach ($result as $record) {
+    $options["webform-client-form-{$record->nid}"] = $record->title;
+  }
+  return $options;
 }
 
 /**
@@ -65,6 +120,15 @@ function _webform_rules_event_variables() {
       'type' => 'string',
       'label' => t('The form id of the submitted form'),
       'hidden' => TRUE,
+    ),
+    'selected_webform' => array(
+      'type' => 'list<text>',
+      'label' => t('Webforms'),
+      'options list' => 'webform_rules_get_webforms',
+      'description' => t('The name of the webform to check for.'),
+      'restriction' => 'input',
+      'hidden' => TRUE,
+      'optional' => TRUE,
     ),
   );
 }

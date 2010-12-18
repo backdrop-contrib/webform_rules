@@ -88,6 +88,11 @@ Token:
     This one does exactly the same as [data:{component}-display] with the
     difference that its output will be rendered as html.
 
+Condition:
+ Webform Rules adds a new condition to the rules configuration. With this
+ condition you can tell rules to react only on one specific webform by selecting
+ its title.
+
 
 -- AUTHOR --
 
