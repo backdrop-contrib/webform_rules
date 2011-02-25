@@ -1,4 +1,3 @@
-/* $Id$ */
 
 This module provides a basic rules integration for webform.
 
