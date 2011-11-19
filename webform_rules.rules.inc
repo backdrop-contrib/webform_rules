@@ -35,7 +35,7 @@ function webform_rules_rules_condition_info() {
       'label' => t('Webform has name'),
       'parameter' => array(
         'form_id' => array(
-          'type' => 'string',
+          'type' => 'text',
           'label' => t('The form id of the submitted form'),
         ),
         'selected_webform' => array(
@@ -75,7 +75,7 @@ function webform_rules_condition_webform_has_id($form_id, $selected_webform) {
   if (is_array($selected_webform)) {
     return in_array($form_id, $selected_webform);
   }
-  elseif (is_string($selected_webform)) {
+  elseif (is_º($selected_webform)) {
     return $form_id == $selected_webform;
   }
   return FALSE;
@@ -116,7 +116,7 @@ function _webform_rules_event_variables() {
       'label' => t('The submitted webform data'),
     ),
     'form_id' => array(
-      'type' => 'string',
+      'type' => 'text',
       'label' => t('The form id of the submitted form'),
       'hidden' => TRUE,
     ),

@@ -55,7 +55,7 @@ function webform_rules_rules_invoke_event($submission_data, $node, $is_draft = F
     'sid' => $webform['sid'],
     'components' => array(),
   );
-  $form_id = 'webform-client-form-'. $webform['nid'];
+  $form_id = 'webform-client-form-' . $webform['nid'];
   // Map values to field names.
   foreach ($submission_data as $cid => $value) {
     $component = $webform['components'][$cid];
@@ -210,8 +210,8 @@ function webform_rules_prepare_component_value($component_value, $raw = FALSE) {
         }
         return implode(', ', $output);
       }
-      // Otherwise, fall through to convert the array as an object.
-      // This is usefull for more readable output.
+    // Otherwise, fall through to convert the array as an object.
+    // This is usefull for more readable output.
     case 'object':
       $output = array();
       foreach ($component_value as $k => $v) {
@@ -248,8 +248,7 @@ function webform_rules_render_component($component, $value, $format = 'text', $t
     $display_element['#id'] = drupal_clean_css_identifier('edit-' . implode('-', $display_element['#parents']));
   }
   if (!$title) {
-  	$display_element['#title'] = NULL;
+    $display_element['#title'] = NULL;
   }
   return drupal_render($display_element);
 }
-
