@@ -23,6 +23,24 @@ function webform_rules_rules_event_info() {
       'variables' => _webform_rules_event_variables(),
       'access callback' => 'rules_node_integration_access',
     ),
+    'webform_rules_insert' => array(
+      'label' => t('After a webform submission has been added'),
+      'group' => t('Webform'),
+      'variables' => _webform_rules_event_variables(),
+      'access callback' => 'rules_node_integration_access',
+    ),
+    'webform_rules_update' => array(
+      'label' => t('After a webform submission has been updated'),
+      'group' => t('Webform'),
+      'variables' => _webform_rules_event_variables(),
+      'access callback' => 'rules_node_integration_access',
+    ),
+    'webform_rules_delete' => array(
+      'label' => t('After a webform submission has been deleted'),
+      'group' => t('Webform'),
+      'variables' => _webform_rules_event_variables(),
+      'access callback' => 'rules_node_integration_access',
+    ),
   );
 }
 
