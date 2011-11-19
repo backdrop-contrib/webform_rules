@@ -19,6 +19,9 @@ function webform_rules_form_alter(&$form, $form_state, $form_id) {
  * Custom submit handler for webform submissions.
  */
 function webform_rules_client_form_submit($form, &$form_state) {
+  // Include submission functions from webform.
+  module_load_include('inc', 'webform', 'includes/webform.submissions');
+  // Get submitted form values.
   $values = $form_state['values'];
   // Check if user is submitting as a draft.
   $is_draft = $values['op'] == t('Save Draft');
