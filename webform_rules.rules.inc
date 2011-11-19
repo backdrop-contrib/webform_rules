@@ -75,7 +75,7 @@ function webform_rules_condition_webform_has_id($form_id, $selected_webform) {
   if (is_array($selected_webform)) {
     return in_array($form_id, $selected_webform);
   }
-  elseif (is_º($selected_webform)) {
+  elseif (is_string($selected_webform)) {
     return $form_id == $selected_webform;
   }
   return FALSE;
