@@ -137,9 +137,6 @@ function webform_rules_rules_invoke_event($submission, $node, $op = 'insert') {
     case 'delete':
       rules_invoke_event('webform_rules_delete', $user, $node, $data, $form_id);
       break;
-    case 'delete':
-      rules_invoke_event('webform_rules_delete', $user, $node, $data, $form_id);
-      break;
   }
 }
 
