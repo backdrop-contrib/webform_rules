@@ -4,5 +4,5 @@ description = "Adds rules integration for webform submissions."
 package = Webform
 files[] = webform_rules.module
 files[] = webform_rules.rules.inc
-dependencies[] = webform
+dependencies[] = webform (>=7.x-4.x)
 dependencies[] = rules
