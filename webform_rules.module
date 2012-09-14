@@ -6,7 +6,7 @@
  */
 
 /**
- * Implementation of hook_webform_submission_insert().
+ * Implements hook_webform_submission_insert().
  *
  * @param $node
  *   The webform node.
@@ -19,7 +19,7 @@ function webform_rules_webform_submission_insert($node, $submission) {
 }
 
 /**
- * Implementation of hook_webform_submission_update().
+ * Implements hook_webform_submission_update().
  *
  * @param $node
  *   The webform node.
@@ -32,7 +32,7 @@ function webform_rules_webform_submission_update($node, $submission) {
 }
 
 /**
- * Implementation of hook_webform_submission_update().
+ * Implements hook_webform_submission_delete().
  *
  * @param $node
  *   The webform node.
@@ -175,7 +175,7 @@ function webform_rules_token_info() {
   );
   $webform['{component}-value-raw'] = array(
     'name' => t('Raw component value'),
-    'description' => t('The title of the selected component, e.g. "email-title".'),
+    'description' => t('The raw value of the selected component, e.g. "email-value-raw". However this is not cleaned up by check_plain(). This is raw user input so take care if you use this somewhere else.'),
   );
   $webform['{component}-display'] = array(
     'name' => t('Component display'),
