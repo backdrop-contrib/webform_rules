@@ -129,7 +129,7 @@ function webform_rules_rules_invoke_event($submission, $node, $op = 'insert') {
       }
       break;
     case 'submit':
-      rules_invoke_event('webform_rules_submit', $user, $node, $data, $form_id);
+      rules_invoke_event('webform_rules_insert', $user, $node, $data, $form_id);
       break;
     case 'update':
       rules_invoke_event('webform_rules_update', $user, $node, $data, $form_id);
