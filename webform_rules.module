@@ -81,7 +81,12 @@ function webform_rules_client_form_submit($form, &$form_state) {
     // Map submitted data to submission data.
     foreach ($form_state['values']['submitted'] as $cid => $value) {
       if (isset($submission->data[$cid])) {
-        $submission->data[$cid] = $value;
+        if (isset($value['value'])) {
+          $submission->data[$cid]['value'] = $value;
+        }
+        else {
+          $submission->data[$cid] = $value;
+        }
       }
     }
     // Invoke event.
@@ -115,7 +120,12 @@ function webform_rules_rules_invoke_event($submission, $node, $op = 'insert') {
   // Map values to field names.
   foreach ($submission->data as $cid => $value) {
     $component = $webform['components'][$cid];
-    $data['components'][$component['form_key']]['value'] = $value;
+    $data['components'][$component['form_key']]['value'] = isset($value['value']) ? $value['value'] : $value;
+    if (!is_array($data['components'][$component['form_key']]['value'])) {
+      // Convert the value to an array to equalize the data with saved
+      // submissions.
+      $data['components'][$component['form_key']]['value'] = array($data['components'][$component['form_key']]['value']);
+    }
     $data['components'][$component['form_key']]['component'] = $component;
   }
   // Invoke the rules event.
