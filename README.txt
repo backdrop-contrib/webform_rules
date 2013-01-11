@@ -23,7 +23,8 @@ a new rule.
 -- USAGE --
 
 Using the submitted data in a rule is easy, as you can access it either via PHP
-or using tokens (after installing the Token-module).
+(requires core module "PHP Filter") or using tokens (after installing the
+Token-module [http://drupal.org/project/token]).
 
 PHP:
  Each rule reacting on an event thrown by "Webform Rules" gets 3 arguments to
