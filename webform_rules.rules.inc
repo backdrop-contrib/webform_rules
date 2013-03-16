@@ -104,7 +104,7 @@ function webform_rules_rules_action_info() {
         'type' => 'list<text>',
         'label' => t('Webforms'),
         'options list' => 'webform_rules_get_webforms_as_options',
-        'description' => t('The name of the webforms to open.'),
+        'description' => t('List of webforms to open.'),
         'restriction' => 'input',
         'optional' => TRUE,
       ),
@@ -121,6 +121,31 @@ function webform_rules_rules_action_info() {
     'webform_close' => $defaults + array(
       'label' => t('Close webforms'),
       'base' => 'webform_rules_webform_close',
+    ),
+    'webform_submissions_load' => array(
+      'label' => t('Fetch webform submissions'),
+      'base' => t('webform_rules_submissions_load'),
+      'group' => t('Webform'),
+      'access callback' => 'rules_node_admin_access',
+      'parameter' => array(
+        'nid' => array(
+          'type' => 'integer',
+          'label' => t('Node ID'),
+          'description' => t('The ID of the webform node to load the submission for.'),
+        ),
+        'sid' => array(
+          'type' => 'integer',
+          'label' => t('Submission ID'),
+          'description' => t('The ID of a webform submission. If omitted all submissions of the specified node ID will be fetched.'),
+          'optional' => TRUE,
+        ),
+      ),
+      'provides' => array(
+        'submissions' => array(
+          'label' => t('Fetched submissions'),
+          'type' => 'list<list>',
+        ),
+      ),
     ),
   );
 
@@ -224,6 +249,32 @@ function _webform_rules_webform_set_status($entity = FALSE, $selected_webforms =
       node_save($webform);
     }
   }
+}
+
+/**
+ * Rules action to load a list of webform submissions.
+ *
+ * @param int $nid
+ *   ID of node to load the submissions for.
+ * @param int $sid
+ *   (optional) Submission ID.
+ *
+ * @return array
+ *   List of loaded webform submissions.
+ */
+function webform_rules_submissions_load($nid, $sid = NULL) {
+  // Make sure the needed functions are available.
+  module_load_include('inc', 'webform', 'includes/webform.submissions');
+  $filters = array(
+    'nid' => $nid,
+  );
+  if (!empty($sid)) {
+    $filters['sid'] = $sid;
+  }
+  // Fetch submissions.
+  $submissions = webform_get_submissions($filters);
+
+  return array('submissions' => $submissions);
 }
 
 /**

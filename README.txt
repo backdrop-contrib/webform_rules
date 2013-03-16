@@ -93,6 +93,10 @@ Condition:
  condition you can tell rules to react only on one specific webform by selecting
  its title.
 
+Actions:
+ Webform Rules provides some additional actions to either open or close webforms
+ or fetch a list of submissions for a webform.
+
 
 -- AUTHOR --
 
