@@ -124,7 +124,7 @@ function webform_rules_rules_action_info() {
     ),
     'webform_submissions_load' => array(
       'label' => t('Fetch webform submissions'),
-      'base' => t('webform_rules_submissions_load'),
+      'base' => 'webform_rules_submissions_load',
       'group' => t('Webform'),
       'access callback' => 'rules_node_admin_access',
       'parameter' => array(
@@ -143,7 +143,7 @@ function webform_rules_rules_action_info() {
       'provides' => array(
         'submissions' => array(
           'label' => t('Fetched submissions'),
-          'type' => 'list<list>',
+          'type' => 'list<webform_data>',
         ),
       ),
     ),
