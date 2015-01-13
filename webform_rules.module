@@ -47,7 +47,7 @@ function webform_rules_webform_submission_delete($node, $submission) {
 /**
  * Implements of hook_form_alter().
  */
-function webform_rules_form_alter(&$form, $form_state, $form_id) {
+function webform_rules_form_alter(&$form, &$form_state, $form_id) {
   if (strpos($form_id, 'webform_client_form_') !== FALSE) {
     // Add custom submit handler to webform form.
     $form['#submit'][] = 'webform_rules_client_form_submit';
