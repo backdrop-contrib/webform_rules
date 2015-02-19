@@ -275,11 +275,11 @@ function _webform_rules_component_property_info($nid) {
   foreach ($webform->webform['components'] as $cid => $component) {
     // A unique selector, using $nid, is important so that our rule will
     // fail validation if the selected webform changes.
-    $id = "{$nid}__{$cid}";
+    $id = "{$component['form_key']}";
     // Provide property info, as in hook_rules_data_info().
     $info[$id] = array(
       'label' => $component['name'],
-      'description' => t('@form_key from node @nid', array('@form_key' => $component['form_key'], '@nid' => $component['nid'])),
+      'description' => t('@component_name from @title(@nid)', array('@component_name' => $component['name'], '@title' => $webform->title, '@nid' => $webform->nid)),
       // All submission data is stored in arrays, whether its multiple or
       // not. Hence, to simplify, we expose all data as list.
       'type' => 'list<text>',
@@ -496,9 +496,11 @@ class WebformRulesSubmissionWrapper extends RulesIdentifiableDataWrapper {
     $s = current($s);
     $this->id = $s->sid;
     $this->data = $s;
-    // Assign each piece of submission data to our wrapper's data properties.
+    $webform = node_load($this->data->nid);
+    $components = $webform->webform['components'];
     foreach ($s->data as $cid => $val) {
-      $id = "{$s->nid}__{$cid}";
+      $c_key = $components[$cid]['form_key'];
+      $id = "{$c_key}";
       $this->data->$id = array_values($val);
     }
   }
