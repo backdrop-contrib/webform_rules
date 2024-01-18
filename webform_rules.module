@@ -5,6 +5,16 @@
  * Adds rules integration for webform submissions.
  */
 
+/** 
+* Backdrop file load
+*/
+function hook_autoload_info() {
+  return array(
+    'ClassName' => 'webform_rules.module',
+    'ClassName' => 'webform_rules.rules.inc',
+  );
+} 
+
 /**
  * Implements hook_webform_submission_insert().
  *
@@ -293,7 +303,7 @@ function webform_rules_tokens($type, $tokens, array $data = array(), array $opti
 
 /**
  * Prepare component value for output.
- * Code adapted from drupal_to_js().
+ * Code adapted from backdrop_to_js().
  *
  * @param $component_value
  *   Value of submitted component.
@@ -356,7 +366,7 @@ function webform_rules_render_component($component, $value, $format = 'text', $t
   $display_element = webform_component_invoke($component['type'], 'display', $component, $value, $format);
   $display_element['#parents'] = array('submitted', $component['form_key']);
   if (!isset($display_element['#id'])) {
-    $display_element['#id'] = drupal_clean_css_identifier('edit-' . implode('-', $display_element['#parents']));
+    $display_element['#id'] = backdrop_clean_css_identifier('edit-' . implode('-', $display_element['#parents']));
   }
   if (!$title) {
     $display_element['#title'] = NULL;
@@ -364,7 +374,7 @@ function webform_rules_render_component($component, $value, $format = 'text', $t
   if (!isset($display_element['#webform_component'])) {
     $display_element['#webform_component'] = $component;
   }
-  return drupal_render($display_element);
+  return backdrop_render($display_element);
 }
 
 /**
