@@ -6,12 +6,12 @@
  */
 
 /** 
-* Backdrop file load
+* Implements hook_autoload_info().
 */
-function hook_autoload_info() {
+function webform_rules_autoload_info() {
   return array(
-    'ClassName' => 'webform_rules.module',
-    'ClassName' => 'webform_rules.rules.inc',
+    'webform_rules_module' => 'webform_rules.module',
+    'webform_rules_rules' => 'webform_rules.rules.inc',
   );
 } 
 
