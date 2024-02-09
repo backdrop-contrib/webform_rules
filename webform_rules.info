@@ -1,6 +1,5 @@
 type = module
 name = Webform Rules
-core = 7.x
 backdrop = 1.x
 description = "Adds rules integration for webform submissions."
 package = Webform
