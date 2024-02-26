@@ -10,10 +10,20 @@
 */
 function webform_rules_autoload_info() {
   return array(
-    'webform_rules_module' => 'webform_rules.module',
-    'webform_rules_rules' => 'webform_rules.rules.inc',
+    'WebformRulesSubmissionWrapper' => 'WebformRulesSubmissionWrapper.inc',
   );
 } 
+
+/**
+ * Implements hook_config_info().
+ */
+function webform_rules_config_info() {
+  $prefixes['webform_rules.settings'] = array(
+    'label' => t('Webform Rules settings'),
+    'group' => t('Configuration'),
+  );
+  return $prefixes;
+}
 
 /**
  * Implements hook_webform_submission_insert().
@@ -225,7 +235,7 @@ function webform_rules_tokens($type, $tokens, array $data = array(), array $opti
     if (empty($webform_node->nid)) {
       return $replacements;
     }
-    $webform = node_load($webform_node->nid);
+    $webform = node_load($webform_node->entity_id);
     $components = $webform->webform['components'];
     //component['value'] have to be like array([0] => xxx)
     foreach ($webform_node->data as $cid => $val) {
@@ -382,7 +392,7 @@ function webform_rules_render_component($component, $value, $format = 'text', $t
  */
 function webform_rules_get_webforms() {
   // Get a list of all webform-enabled content types.
-  $webform_types = webform_variable_get('webform_node_types');
+  $webform_types = webform_config_get('webform_rules.settings','webform_node_types');
   // Get a list of all nodes that are configured to use a webform.
   $query = db_select('node', 'n')
     ->fields('n', array('nid', 'title'))
