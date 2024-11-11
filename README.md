@@ -3,8 +3,6 @@ Webform Rules
 
 This module adds rules integration on webforms. 
 
-
-
 Requirements 
 ------------
 
@@ -22,12 +20,6 @@ Installation
 - After that you'll see a new event in the listing while creating
 a new rule.
 
-
-Documentation 
--------------
-
-Additional documentation is located in [the Wiki](https://github.com/backdrop-contrib/webform_rules/wiki/Documentation).
-
 Issues
 ------
 
@@ -36,25 +28,22 @@ Bugs and feature requests should be reported in [the Issue Queue](https://github
 Current Maintainers
 -------------------
 
-- [Giant Rabbit](https://github.com/giant-rabbit).
-
-- Seeking additional maintainers.
-
+- [Eli Lisseck](https://github.com/elisseck)
+- [Peter Haight](https://github.com/Dawnthorn)
+- [Anthony Nemirovsky](https://github.com/anemirovsky)
 
 Credits
 -------
 
-- Ported to Backdrop CMS by [Lauren Blais](https://github.com/rlblais),[Giant Rabbit](https://github.com/giant-rabbit).
-- Porting to Backdrop CMS development sponsored by [USENIX](https://www.usenix.org/).
+- Ported to Backdrop CMS by [Lauren Blais](https://github.com/rlblais).
+- Backdrop development supported by [USENIX](https://www.usenix.org/).
+- Backdrop development supported by [Giant Rabbit](https://github.com/giant-rabbit).
 - Originally written for Drupal and co-maintained by [Stefan Borchert (stBorchert)](https://www.drupal.org/u/stborchert).
 - Drupal 7 version co-maintained by:
   - [Shashank Kumar (shashank5563)](https://www.drupal.org/u/shashank5563)
-- Based on [Webform Rules](https://www.drupal.org/project/webform_rules).
 
 License 
 -------
 
 This project is GPL v2 software.
 See the LICENSE.txt file in this directory for complete text.
-
-
