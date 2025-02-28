@@ -392,7 +392,7 @@ function webform_rules_render_component($component, $value, $format = 'text', $t
  */
 function webform_rules_get_webforms() {
   // Get a list of all webform-enabled content types.
-  $webform_types = webform_config_get('webform_rules.settings','webform_node_types');
+  $webform_types = webform_node_types();
   // Get a list of all nodes that are configured to use a webform.
   $query = db_select('node', 'n')
     ->fields('n', array('nid', 'title'))
