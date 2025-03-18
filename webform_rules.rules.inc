@@ -279,7 +279,7 @@ function _webform_rules_component_property_info($entity_id) {
     // Provide property info, as in hook_rules_data_info().
     $info[$id] = array(
       'label' => $component['name'],
-      'description' => t('@component_name from @title(@entity_id)', array('@component_name' => $component['name'], '@title' => $webform->title, '@entity_id' => $webform->entity_id)),
+      'description' => t('@component_name from @title(@entity_id)', array('@component_name' => $component['name'], '@title' => $webform->title, '@entity_id' => $webform->nid)),
       // All submission data is stored in arrays, whether its multiple or
       // not. Hence, to simplify, we expose all data as list.
       'type' => 'list<text>',

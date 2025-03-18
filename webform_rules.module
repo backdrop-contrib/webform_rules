@@ -136,6 +136,7 @@ function webform_rules_rules_invoke_event($submission, $node, $op = 'insert') {
     'sid' => $submission->sid,
     'components' => array(),
   );
+
   $form_id = 'webform-client-form-' . $webform['nid'];
   // Map values to field names.
   foreach ($submission->data as $cid => $value) {
@@ -235,7 +236,7 @@ function webform_rules_tokens($type, $tokens, array $data = array(), array $opti
     if (empty($webform_node->nid)) {
       return $replacements;
     }
-    $webform = node_load($webform_node->entity_id);
+    $webform = node_load($webform_node->nid);
     $components = $webform->webform['components'];
     //component['value'] have to be like array([0] => xxx)
     foreach ($webform_node->data as $cid => $val) {

@@ -42,7 +42,7 @@ class WebformRulesSubmissionWrapper extends RulesIdentifiableDataWrapper {
     $s = current($s);
     $this->id = $s->sid;
     $this->data = $s;
-    $webform = node_load($this->data->entity_id);
+    $webform = node_load($this->data->nid);
     $components = $webform->webform['components'];
     foreach ($s->data as $cid => $val) {
       $c_key = $components[$cid]['form_key'];
